@@ -1,4 +1,5 @@
 import Options from '../options/options'
+import Groups from '../groups/groups'
 import MainDOM from './main.dom'
 import * as User from '../../model/User'
 import * as Comment from '../../model/Comment'
@@ -16,7 +17,8 @@ function initApp() {
   User.initializeFirebase(closeLoginPrompt, loginPrompt)
 
   DOM.submitBtn.addEventListener('click', submit)
-  DOM.optionsBtn.addEventListener('click', openOptions)
+    DOM.optionsBtn.addEventListener('click', openOptions)
+    DOM.groupsBtn.addEventListener('click', openGroups)
   DOM.logout.addEventListener('click', logout)
   DOM.inputField.addEventListener('keydown', inputKeydown)
 
@@ -25,6 +27,10 @@ function initApp() {
     Comment.postComment(DOM.inputField.value)
     DOM.clearInputField()
   }
+
+  function openGroups() {
+        Groups()
+    }
 
   function openOptions() {
     Options()

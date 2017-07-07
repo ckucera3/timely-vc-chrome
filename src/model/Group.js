@@ -28,6 +28,12 @@ export function createGroup({
     }
 }
 
+export function getGroupHeadersListener(onValue) {
+    return firebase.database().ref('groups').child('headers')
+        .limitToFirst(5)
+        .on('child_added', onValue)
+}
+
 export function getGroupById(id) {
     console.log("Group.getGroup")
     if (user) {

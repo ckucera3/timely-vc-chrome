@@ -44,7 +44,18 @@ export function getCurrentUser() {
   return firebase.auth().currentUser
 }
 
-window.getGroups = getMemberGroups
+function getUserDBRef() {
+    const db = firebase.database().ref().child('users').child(getCurrentUser().uid)
+    return db
+}
+
+
+export function joinGroup(groupId) {
+    const userRef = getUserDBRef()
+    return userRef.child('groups').child(groupId).set(true)
+
+}
+
 
 // Initialize Firebase
 export function initializeFirebase(onLogin, onLogoff) {
